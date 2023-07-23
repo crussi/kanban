@@ -14,8 +14,8 @@ class BoardSection extends StatefulWidget {
 }
 
 class _BoardSectionState extends State<BoardSection> {
-  List<People> people1;
-  List<People> people2;
+  late List<People> people1;
+  late List<People> people2;
   var people = [
     People(
         name: 'Greta Abbott',
@@ -126,11 +126,11 @@ class _BoardSectionState extends State<BoardSection> {
 
 class BoardItem extends StatefulWidget {
   const BoardItem({
-    Key key,
-    @required this.list,
-    @required this.color,
-    @required this.title,
-    @required this.icon,
+    Key? key,
+    required this.list,
+    required this.color,
+    required this.title,
+    required this.icon,
   }) : super(key: key);
 
   final List<People> list;
@@ -181,7 +181,7 @@ class _BoardItemState extends State<BoardItem> {
                 ),
                 const XMargin(10),
                 Text(
-                  widget?.title ?? '',
+                  widget.title,
                   textAlign: TextAlign.start,
                   style: GoogleFonts.ubuntu(
                       textStyle: TextStyle(
@@ -286,7 +286,7 @@ class _ListViewCard extends State<ListViewCard> {
                     Container(
                       width: context.screenWidth(.082),
                       child: Text(
-                        widget?.person?.name ?? '',
+                        widget.person.name,
                         textAlign: TextAlign.start,
                         style: GoogleFonts.ubuntu(
                             textStyle: TextStyle(
@@ -296,7 +296,7 @@ class _ListViewCard extends State<ListViewCard> {
                     const YMargin(5),
                     Container(
                       width: context.screenWidth(.06),
-                      child: Text(widget?.person?.job ?? '',
+                      child: Text(widget.person.job,
                           textAlign: TextAlign.start,
                           style: TextStyle(
                             fontWeight: FontWeight.w300,
@@ -317,12 +317,13 @@ class _ListViewCard extends State<ListViewCard> {
               padding: EdgeInsets.all(0),
               scrollDirection: Axis.horizontal,
               children: [
-                for (var min in widget?.person?.lang ?? [])
+                for (var min in widget.person.lang ?? [])
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 6, vertical: 1),
                     margin: EdgeInsets.only(right: 6),
                     decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey[300]),
+                        border:
+                            Border.all(color: Colors.grey[300] ?? Colors.grey),
                         borderRadius: BorderRadius.circular(20)),
                     child: Center(
                       child: Text(min ?? '',

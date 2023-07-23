@@ -3,5 +3,5 @@ class Job {
   final String price;
   final bool selected;
 
-  Job({this.title, this.price, this.selected = false});
+  Job({required this.title, required this.price, this.selected = false});
 }

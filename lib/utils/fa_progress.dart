@@ -2,22 +2,21 @@ import 'package:flutter/animation.dart';
 import 'package:flutter/widgets.dart';
 
 class FAProgressBar extends StatefulWidget {
-  FAProgressBar(
-      {Key key,
-      this.currentValue = 0,
-      this.maxValue = 100,
-      this.size = 30,
-      this.animatedDuration = const Duration(milliseconds: 300),
-      this.direction = Axis.horizontal,
-      this.verticalDirection = VerticalDirection.down,
-      this.borderRadius = 8,
-      this.backgroundColor = const Color(0x00FFFFFF),
-      this.progressColor = const Color(0xFFFA7268),
-      this.changeColorValue,
-      this.displayWidget,
-      this.changeProgressColor = const Color(0xFF5F4B8B),
-   })
-      : super(key: key);
+  FAProgressBar({
+    Key? key,
+    this.currentValue = 0,
+    this.maxValue = 100,
+    this.size = 30,
+    this.animatedDuration = const Duration(milliseconds: 300),
+    this.direction = Axis.horizontal,
+    this.verticalDirection = VerticalDirection.down,
+    this.borderRadius = 8,
+    this.backgroundColor = const Color(0x00FFFFFF),
+    this.progressColor = const Color(0xFFFA7268),
+    this.changeColorValue,
+    this.displayWidget,
+    this.changeProgressColor = const Color(0xFF5F4B8B),
+  }) : super(key: key);
   final int currentValue;
   final int maxValue;
   final double size;
@@ -27,9 +26,9 @@ class FAProgressBar extends StatefulWidget {
   final double borderRadius;
   final Color backgroundColor;
   final Color progressColor;
-  final int changeColorValue;
+  final int? changeColorValue;
   final Color changeProgressColor;
-  final Widget displayWidget;
+  final Widget? displayWidget;
 
   @override
   _FAProgressBarState createState() => _FAProgressBarState();
@@ -37,8 +36,8 @@ class FAProgressBar extends StatefulWidget {
 
 class _FAProgressBarState extends State<FAProgressBar>
     with SingleTickerProviderStateMixin {
-  Animation<double> _animation;
-  AnimationController _controller;
+  late Animation<double> _animation;
+  late AnimationController _controller;
   double _currentBegin = 0.4;
   double _currentEnd = 0;
 
@@ -84,9 +83,9 @@ class _FAProgressBarState extends State<FAProgressBar>
 
 class AnimatedProgressBar extends AnimatedWidget {
   AnimatedProgressBar({
-    Key key,
-    Animation<double> animation,
-    this.widget,
+    Key? key,
+    required Animation<double> animation,
+    required this.widget,
   }) : super(key: key, listenable: animation);
   final FAProgressBar widget;
 
@@ -96,8 +95,8 @@ class AnimatedProgressBar extends AnimatedWidget {
   }
 
   Widget build(BuildContext context) {
-    final Animation<double> animation = listenable;
-    Color progressColor = widget.progressColor;
+    final Animation<double> animation = listenable as Animation<double>;
+    Color? progressColor = widget.progressColor;
 
     if (widget.changeColorValue != null) {
       final _colorTween = ColorTween(

@@ -48,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 color: Colors.grey[800],
                               ),
                               onPressed: () {
-                                _scaffoldkey.currentState.openDrawer();
+                                _scaffoldkey.currentState?.openDrawer();
                               },
                             ),
                             margin: EdgeInsets.only(bottom: 18),

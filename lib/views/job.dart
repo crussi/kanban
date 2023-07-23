@@ -117,8 +117,8 @@ class JobSection extends StatelessWidget {
 
 class JobItem extends StatelessWidget {
   const JobItem({
-    Key key,
-    this.job,
+    Key? key,
+    required this.job,
   }) : super(key: key);
   final Job job;
 
@@ -141,7 +141,7 @@ class JobItem extends StatelessWidget {
                   FittedBox(
                     fit: BoxFit.fitWidth,
                     child: Text(
-                      job?.title ?? '',
+                      job.title,
                       style: TextStyle(
                           color: darkGrey.withOpacity(job.selected ? 1 : 0.5),
                           fontWeight: FontWeight.bold,
@@ -152,7 +152,7 @@ class JobItem extends StatelessWidget {
                   FittedBox(
                     fit: BoxFit.fitWidth,
                     child: Text(
-                      '\$${job.price ?? '100'}',
+                      '\$${job.price}',
                       style: GoogleFonts.ubuntu(
                         textStyle: TextStyle(
                           fontWeight: FontWeight.w100,
